@@ -21,7 +21,7 @@ def iter_log_entries(file_path: str | Path):
             yield entry
 
 
-def reading_batch_entries(entries, batch_size=100):
+def batch_entries(entries, batch_size=100):
     """Yields a fixed size batch of entries at a time"""
 
     batch = []
