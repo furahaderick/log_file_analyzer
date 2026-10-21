@@ -4,7 +4,7 @@ from src.models import RequestLogEntry
 from src.patterns import log_line_pattern
 
 
-def parse_single_log_line(line: str) -> RequestLogEntry | None:
+def parse_log_line(line: str) -> RequestLogEntry | None:
     match = log_line_pattern.match(line)
 
     if not match:

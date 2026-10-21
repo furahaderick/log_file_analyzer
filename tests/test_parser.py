@@ -3,11 +3,11 @@
 
 from datetime import datetime
 
-from src.parser import parse_single_log_line
+from src.parser import parse_log_line
 
 
 def test_parser_returns_none_on_invalid_line():
-    invalid_line_parse = parse_single_log_line(
+    invalid_line_parse = parse_log_line(
         '192.168.1.999 - - [32/Oct/2026:25:61:99 +9999] "GET /index.html HTTP/9.9" XYZ abc "-" "Mozilla/5.0"'
     )
 
@@ -15,7 +15,7 @@ def test_parser_returns_none_on_invalid_line():
 
 
 def test_parser_successfully_parses_log_line():
-    log_entry = parse_single_log_line(
+    log_entry = parse_log_line(
         '192.168.1.10 - - [21/Oct/2026:12:50:00 +0200] "GET /index.html HTTP/1.1" 200 512'
     )
     assert log_entry is not None
@@ -30,7 +30,7 @@ def test_parser_successfully_parses_log_line():
 
 
 def test_parser_gives_none_to_requests_without_size():
-    log_entry = parse_single_log_line(
+    log_entry = parse_log_line(
         '10.0.0.8 - - [21/Oct/2026:12:54:00 +0200] "GET /download HTTP/1.1" 200 -'
     )
 
