@@ -6,6 +6,7 @@ from itertools import groupby
 from typing import Any
 
 
+from src.decorators import log_call, timer
 from src.models import RequestLogEntry
 
 
@@ -56,6 +57,8 @@ def group_entries_by_hour(entries: Iterable[RequestLogEntry]) -> dict[datetime, 
     return hourly_counts
 
 
+@log_call
+@timer
 def generate_report(entries: Iterable[RequestLogEntry]) -> dict[str, Any]:
     """Generate a report containing the main statistics"""
 
