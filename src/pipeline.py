@@ -30,6 +30,8 @@ def filter_by_ip(
 def filter_by_time_range(
     entries: Iterable[RequestLogEntry], start_time: datetime, end_time: datetime
 ) -> Iterator[RequestLogEntry]:
+    """Returns entries matching a specific time range"""
+
     return filter(lambda entry: start_time <= entry.timestamp <= end_time, entries)
 
 
@@ -40,6 +42,8 @@ def build_pipeline(
     start_time: datetime | None = None,
     end_time: datetime | None = None,
 ) -> Iterator[RequestLogEntry]:
+    """Combines transformation and filtering"""
+
     # 1. transform
     pipeline = map(transform_entry, entries)
 
