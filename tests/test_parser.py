@@ -36,3 +36,59 @@ def test_parser_gives_none_to_requests_without_size():
 
     assert log_entry is not None
     assert log_entry.bytes is None
+
+
+from datetime import datetime, timedelta, timezone
+
+from src.parser import parse_log_line
+
+
+def test_parses_ip(sample_log_line):
+    entry = parse_log_line(sample_log_line)
+    assert entry is not None
+    assert entry.ip == "192.168.1.10"
+
+
+def test_parses_http_method(sample_log_line):
+    entry = parse_log_line(sample_log_line)
+    assert entry is not None
+    assert entry.method == "GET"
+
+
+def test_parses_url(sample_log_line):
+    entry = parse_log_line(sample_log_line)
+    assert entry is not None
+    assert entry.url == "/products"
+
+
+def test_parses_status_and_bytes(sample_log_line):
+    entry = parse_log_line(sample_log_line)
+    assert entry is not None
+    assert entry.status == 200
+    assert entry.bytes == 1234
+
+
+def test_parses_timestamp_with_timezone(sample_log_line):
+    entry = parse_log_line(sample_log_line)
+
+    expected = datetime(
+        2026,
+        10,
+        22,
+        19,
+        3,
+        36,
+        tzinfo=timezone(timedelta(hours=2)),
+    )
+
+    assert entry is not None
+    assert entry.timestamp == expected
+
+
+def test_returns_none_for_invalid_line():
+    assert parse_log_line("not a valid log line") is None
+
+
+def test_returns_none_for_incomplete_request():
+    line = "192.168.1.10 - - [22/Oct/2026:19:03:36 +0200] " '"GET /products HTTP/1.1"'
+    assert parse_log_line(line) is None
