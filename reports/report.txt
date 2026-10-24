@@ -1,0 +1,28 @@
+LOG FILE ANALYSIS REPORT
+========================
+Source: data/access_1.log, data/access_2.log
+Generated: 2026-10-24 20:26:44 +0200
+
+Total requests: 216
+Unique IP addresses: 25
+Total response bytes: 522296
+Requests with 4xx/5xx status: 216
+
+Requests by HTTP method:
+  DELETE: 34
+  GET: 96
+  POST: 36
+  PUT: 50
+
+Requests by status code:
+  500: 216
+
+Top URLs:
+  /products/42: 36
+  /products: 34
+  /search?q=python: 30
+  /login: 30
+  /missing: 30
+  /health: 20
+  /: 18
+  /api/orders: 18
