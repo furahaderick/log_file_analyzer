@@ -66,9 +66,12 @@ def generate_report(entries: Iterable[RequestLogEntry]) -> dict[str, Any]:
 
     return {
         "total_requests": len(entries),
+        "unique_ips": len({entry.ip for entry in entries}),
+        "total_bytes": calculate_total_bytes(entries),
+        "error_requests": sum(1 for entry in entries if 400 <= entry.status < 600),
+        "requests_by_method": dict(Counter(entry.method for entry in entries)),
         "status_counts": count_status_codes(entries),
         "requests_by_ip": count_requests_by_ip(entries),
-        "top_urls": find_top_urls(entries),
-        "total_bytes": calculate_total_bytes(entries),
+        "top_urls": find_top_urls(entries, limit=8),
         "requests_by_hour": group_entries_by_hour(entries),
     }
