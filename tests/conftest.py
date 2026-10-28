@@ -1,7 +1,6 @@
-# flake8: noqa: E501
 # pylint: disable=redefined-outer-name
 
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 import pytest
 
@@ -28,7 +27,7 @@ def sample_log_lines():
 
 @pytest.fixture
 def sample_entries():
-    timestamp = datetime(2026, 10, 22, 19, 0, tzinfo=timezone.utc)
+    timestamp = datetime(2026, 10, 22, 19, 0, tzinfo=UTC)
 
     return [
         RequestLogEntry(

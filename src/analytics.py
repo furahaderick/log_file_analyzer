@@ -5,7 +5,6 @@ from functools import reduce
 from itertools import groupby
 from typing import Any
 
-
 from src.decorators import log_call, timer
 from src.models import RequestLogEntry
 

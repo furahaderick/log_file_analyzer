@@ -12,9 +12,7 @@ def test_matches_valid_get_request(sample_log_line):
 
 
 def test_matches_different_http_method():
-    line = (
-        "10.0.0.1 - - [22/Oct/2026:19:03:36 +0200] " '"DELETE /items/1 HTTP/1.1" 204 0'
-    )
+    line = '10.0.0.1 - - [22/Oct/2026:19:03:36 +0200] "DELETE /items/1 HTTP/1.1" 204 0'
     assert log_line_pattern.fullmatch(line) is not None
 
 
@@ -27,7 +25,7 @@ def test_matches_query_string_url():
 
 
 def test_rejects_missing_status_code():
-    line = "10.0.0.1 - - [22/Oct/2026:19:03:36 +0200] " '"GET / HTTP/1.1"'
+    line = '10.0.0.1 - - [22/Oct/2026:19:03:36 +0200] "GET / HTTP/1.1"'
     assert log_line_pattern.fullmatch(line) is None
 
 
@@ -36,5 +34,5 @@ def test_rejects_non_log_text():
 
 
 def test_rejects_missing_request_quotes():
-    line = "10.0.0.1 - - [22/Oct/2026:19:03:36 +0200] " "GET / HTTP/1.1 200 123"
+    line = "10.0.0.1 - - [22/Oct/2026:19:03:36 +0200] GET / HTTP/1.1 200 123"
     assert log_line_pattern.fullmatch(line) is None
