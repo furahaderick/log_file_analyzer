@@ -79,7 +79,7 @@ def build_pipeline(
     """Combines transformation and filtering"""
 
     # 1. transform
-    pipeline = map(transform_entry, entries)
+    pipeline: Iterator[RequestLogEntry] = map(transform_entry, entries)
 
     # 2. apply filters if specified
     if status_code is not None:

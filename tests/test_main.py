@@ -38,7 +38,7 @@ def sample_report():
 def test_format_report_has_heading(sample_report):
     text = format_report(sample_report, "data/access.log")
 
-    assert text.startswith("LOG FILE ANALYSIS REPORT\n" "========================")
+    assert text.startswith("LOG FILE ANALYSIS REPORT\n========================")
 
 
 def test_format_report_includes_source(sample_report):
