@@ -1,8 +1,8 @@
 import argparse
+from collections.abc import Iterator
 from datetime import datetime
 from itertools import chain
 from pathlib import Path
-from typing import Iterator
 
 from src.analytics import generate_report
 from src.models import RequestLogEntry

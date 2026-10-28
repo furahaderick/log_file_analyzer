@@ -1,4 +1,3 @@
-# flake8: noqa: E501
 # pylint: disable=line-too-long
 
 from datetime import datetime
@@ -38,9 +37,7 @@ def test_parser_gives_none_to_requests_without_size():
     assert log_entry.bytes is None
 
 
-from datetime import datetime, timedelta, timezone
-
-from src.parser import parse_log_line
+from datetime import timedelta, timezone
 
 
 def test_parses_ip(sample_log_line):
@@ -90,5 +87,5 @@ def test_returns_none_for_invalid_line():
 
 
 def test_returns_none_for_incomplete_request():
-    line = "192.168.1.10 - - [22/Oct/2026:19:03:36 +0200] " '"GET /products HTTP/1.1"'
+    line = '192.168.1.10 - - [22/Oct/2026:19:03:36 +0200] "GET /products HTTP/1.1"'
     assert parse_log_line(line) is None

@@ -1,4 +1,3 @@
-
 from datetime import timedelta
 
 from src.analytics import (
@@ -44,9 +43,7 @@ def test_calculate_total_bytes_empty():
 def test_group_entries_by_hour(sample_entries):
     result = group_entries_by_hour(sample_entries)
 
-    first_hour = sample_entries[0].timestamp.replace(
-        minute=0, second=0, microsecond=0
-    )
+    first_hour = sample_entries[0].timestamp.replace(minute=0, second=0, microsecond=0)
     second_hour = first_hour + timedelta(hours=1)
 
     assert result[first_hour] == 3
